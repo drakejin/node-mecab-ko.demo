@@ -1,0 +1,19 @@
+version: '3.2'
+
+services:
+  node-mecab-ko-demo:
+    container_name: node-mecab-ko-demo
+    image: drakejin/node-mecab-ko-demo
+    build:
+      context: .
+      cache_from:
+        - drakejin/node-mecab-ko:10.15.3
+    restart: always
+    ports:
+      - 4000:4000
+    volumes:
+      - ./src:/opt/app/src
+      - ./package.json:/opt/app/package.json
+      - ./package-lock.json:/opt/app/package-lock.json
+    env_file:
+      - .env
